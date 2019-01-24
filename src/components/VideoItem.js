@@ -1,5 +1,6 @@
 import "./VideoItem.css";
 import React from "react";
+import VideoDetail from "./VideoDetail";
 
 const VideoItem = ({ video, onVideoSelect }) => {
   return (
@@ -10,7 +11,9 @@ const VideoItem = ({ video, onVideoSelect }) => {
         alt={video.id.videoId}
       />
       <div className="content">
-        <div className="header">{video.snippet.title}</div>
+        <div className="header">
+          <VideoDetail />
+        </div>
       </div>
     </div>
   );
