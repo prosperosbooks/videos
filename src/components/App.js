@@ -1,10 +1,12 @@
 import React from "react";
 import SearchBar from "./SearchBar";
 import youtube from "../api/youtube";
+import VideoList from "./VideoList";
 
 class App extends React.Component {
   state = {
-    videos: []
+    videos: [],
+    selectedVideo: null
   };
 
   onInputSubmit = async input => {
@@ -15,6 +17,11 @@ class App extends React.Component {
     });
 
     this.setState({ videos: response.data.items });
+    console.log(this.state.videos);
+  };
+
+  onVideoSelect = video => {
+    console.log("From the API", video);
   };
 
   render() {
@@ -22,6 +29,10 @@ class App extends React.Component {
       <div className="ui container">
         <SearchBar onFormSubmit={this.onInputSubmit} />I have{" "}
         {this.state.videos.length} videos.
+        <VideoList
+          onVideoSelect={this.onVideoSelect}
+          videos={this.state.videos}
+        />
       </div>
     );
   }
